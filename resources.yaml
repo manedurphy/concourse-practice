@@ -1,0 +1,21 @@
+resources:
+  - name: practice
+    type: git
+    source:
+      uri: "https://github.com/manedurphy/concourse-practice.git"
+
+jobs:
+  - name: unit
+    plan:
+      - get: practice
+        trigger: true
+      - task: show-content
+        config:
+          platform: linux
+          image_resource:
+            type: registry-image
+            source:
+              repository: busybox
+          run:
+            path: echo
+            args: ["Hello world!"]

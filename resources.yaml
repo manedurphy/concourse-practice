@@ -1,5 +1,5 @@
 resources:
-  - name: practice
+  - name: repo
     type: git
     source:
       uri: "https://github.com/manedurphy/concourse-practice.git"
@@ -7,7 +7,7 @@ resources:
 jobs:
   - name: hello-world-job
     plan:
-      - get: practice
+      - get: repo
         trigger: true
       - task: show-content
         config:
@@ -16,6 +16,8 @@ jobs:
             type: registry-image
             source:
               repository: busybox
+          inputs:
+            - name: repo
           run:
-            path: echo
-            args: ["Hello world!"]
+            path: cat
+            args: ["repo/README.md"]

@@ -5,7 +5,7 @@ resources:
       uri: "https://github.com/manedurphy/concourse-practice.git"
 
 jobs:
-  - name: unit
+  - name: hello-world-job
     plan:
       - get: practice
         trigger: true

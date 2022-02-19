@@ -1,9 +1,18 @@
 resources:
   - name: repo
     type: git
+    icon: github
     source:
       uri: https://((github.username)):((github.personal_access_token))@github.com/manedurphy/concourse-practice.git
       branch: main
+
+  - name: repo-image
+    type: docker-image
+    icon: docker
+    source:
+      repository: manedurphy/concourse-test
+      username: ((docker_hub.username))
+      password: ((docker_hub.password))
 
 jobs:
   - name: git-example
@@ -35,3 +44,9 @@ jobs:
       - put: repo
         params:
           repository: repo
+  - name: build-and-push
+    plan:
+      - get: repo
+      - put: repo-image
+        params:
+          build: repo

@@ -1,4 +1,5 @@
 #! /bin/bash
 
 fly -t tutorial trigger-job \
---job hello-world/$JOB --watch 
+    --job git/$JOB \
+    --watch

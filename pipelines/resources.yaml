@@ -2,7 +2,7 @@ resources:
   - name: repo
     type: git
     source:
-      uri: ((repo.uri))
+      uri: https://((github.username)):((github.personal_access_token))@github.com/manedurphy/concourse-practice.git
       branch: main
 
 jobs:
@@ -30,7 +30,7 @@ jobs:
                 date +"%Y-%m-%d" > todays-date
                 git add ./todays-date
                 git config --global user.email ((github.email))
-                git config --global user.name ((github.author))
+                git config --global user.name ((author))
                 git commit -m "Update todays date"
       - put: repo
         params:

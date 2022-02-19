@@ -9,7 +9,6 @@ resources:
   - name: repo-image
     type: docker-image
     icon: docker
-    privileged: true
     source:
       repository: manedurphy/concourse-test
       username: ((docker_hub.username))
